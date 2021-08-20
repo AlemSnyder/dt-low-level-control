@@ -1,8 +1,0 @@
-data:
-- [asphalt, asphalt]
-- [asphalt, asphalt]
-- [grass, grass]
-- [grass, grass]
-name: LAB-CODE
-tile_size: 0.585
-type: 0-tiles
