@@ -158,9 +158,9 @@ FROM ${BASE}
 COPY --from=builder /src/web/dist/ /usr/local/lib/web/frontend/
 
 # make websockify executable
-RUN ln -sf /usr/local/lib/web/frontend/static/websockify \
-        /usr/local/lib/web/frontend/static/novnc/utils/websockify \
-    && chmod +x /usr/local/lib/web/frontend/static/websockify/run
+#RUN ln -sf /usr/local/lib/web/frontend/static/websockify \
+#        /usr/local/lib/web/frontend/static/novnc/utils/websockify \
+#    && chmod +x /usr/local/lib/web/frontend/static/websockify/run
 
 # configure novnc
 ENV HTTP_PORT 8087
