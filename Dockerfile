@@ -126,10 +126,10 @@ FROM ubuntu:focal as builder
 #        nodejs
 
 # yarn
-#RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-#    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-#    && apt-get update \
-#    && apt-get install -y yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+    && apt-get update \
+    && apt-get install -y yarn
 
 # fetch noVNC
 #ARG NOVNC_VERSION
@@ -137,9 +137,9 @@ FROM ubuntu:focal as builder
 #    && git -C /src/web/static/novnc checkout ${NOVNC_VERSION}
 
 # fetch websockify
-#ARG WEBSOCKIFY_VERSION
-#RUN git clone https://github.com/novnc/websockify /src/web/static/websockify \
-#    && git -C /src/web/static/websockify checkout ${WEBSOCKIFY_VERSION}
+ARG WEBSOCKIFY_VERSION
+RUN git clone https://github.com/novnc/websockify /src/web/static/websockify \
+    && git -C /src/web/static/websockify checkout ${WEBSOCKIFY_VERSION}
 
 # build frontend
 COPY assets/vnc/web /src/web
@@ -157,9 +157,9 @@ FROM BASE
 #COPY --from=builder /src/web/dist/ /usr/local/lib/web/frontend/
 
 # make websockify executable
-#RUN ln -sf /usr/local/lib/web/frontend/static/websockify \
-#        /usr/local/lib/web/frontend/static/novnc/utils/websockify \
-#    && chmod +x /usr/local/lib/web/frontend/static/websockify/run
+RUN ln -sf /usr/local/lib/web/frontend/static/websockify \
+        /usr/local/lib/web/frontend/static/novnc/utils/websockify \
+    && chmod +x /usr/local/lib/web/frontend/static/websockify/run
 
 # configure novnc
 ENV HTTP_PORT 8087
