@@ -95,12 +95,12 @@ LABEL org.duckietown.label.module.type="${REPO_NAME}" \
 # RUN [ ! -d "/usr/local/ffmpeg/ffmpeg" ] && ln -s /usr/bin/ffmpeg /usr/local/ffmpeg/ffmpeg
 
 # install backend dependencies
-COPY assets/vnc/install-backend-deps /tmp/
-COPY assets/vnc/image/usr/local/lib/web/backend/requirements.txt /tmp/
-RUN /tmp/install-backend-deps
+#COPY assets/vnc/install-backend-deps /tmp/
+#COPY assets/vnc/image/usr/local/lib/web/backend/requirements.txt /tmp/
+#RUN /tmp/install-backend-deps
 
 # copy novnc stuff to the root of the container
-COPY assets/vnc/image /
+#COPY assets/vnc/image /
 
 
 #### => Substep: Frontend builder
@@ -132,12 +132,12 @@ FROM ubuntu:focal as builder
 #    && apt-get install -y yarn
 
 # fetch noVNC
-ARG NOVNC_VERSION
+#ARG NOVNC_VERSION
 #RUN git clone https://github.com/novnc/noVNC /src/web/static/novnc \
 #    && git -C /src/web/static/novnc checkout ${NOVNC_VERSION}
 
 # fetch websockify
-ARG WEBSOCKIFY_VERSION
+#ARG WEBSOCKIFY_VERSION
 #RUN git clone https://github.com/novnc/websockify /src/web/static/websockify \
 #    && git -C /src/web/static/websockify checkout ${WEBSOCKIFY_VERSION}
 
@@ -157,9 +157,9 @@ FROM BASE
 #COPY --from=builder /src/web/dist/ /usr/local/lib/web/frontend/
 
 # make websockify executable
-RUN ln -sf /usr/local/lib/web/frontend/static/websockify \
-        /usr/local/lib/web/frontend/static/novnc/utils/websockify \
-    && chmod +x /usr/local/lib/web/frontend/static/websockify/run
+#RUN ln -sf /usr/local/lib/web/frontend/static/websockify \
+#        /usr/local/lib/web/frontend/static/novnc/utils/websockify \
+#    && chmod +x /usr/local/lib/web/frontend/static/websockify/run
 
 # configure novnc
 ENV HTTP_PORT 8087
