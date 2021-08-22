@@ -89,8 +89,10 @@ LABEL org.duckietown.label.module.type="${REPO_NAME}" \
 # <==================================================
 
 # configure ffmpeg
-RUN mkdir /usr/local/ffmpeg \
-    && ln -s /usr/bin/ffmpeg /usr/local/ffmpeg/ffmpeg
+# should remove all copy ommands
+# and half the run commands
+RUN [ ! -d "/usr/local/ffmpeg" ] && mkdir /usr/local/ffmpeg
+RUN [ ! -d "/usr/local/ffmpeg/ffmpeg" ] && ln -s /usr/bin/ffmpeg /usr/local/ffmpeg/ffmpeg
 
 # install backend dependencies
 COPY assets/vnc/install-backend-deps /tmp/
