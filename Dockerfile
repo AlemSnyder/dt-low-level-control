@@ -142,7 +142,7 @@ FROM ubuntu:focal as builder
 #    && git -C /src/web/static/websockify checkout ${WEBSOCKIFY_VERSION}
 
 # build frontend
-#COPY assets/vnc/web /src/web
+COPY assets/vnc/web /src/web
 RUN cd /src/web \
     && yarn \
     && yarn build
