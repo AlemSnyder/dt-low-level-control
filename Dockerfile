@@ -16,9 +16,10 @@ ARG DISTRO=daffy
 ARG BASE_TAG=${DISTRO}-${ARCH}
 ARG BASE_IMAGE=dt-gui-tools
 ARG LAUNCHER=default
+ARG BASE=dt-gui-tools:latest
 
 # define base image
-FROM dt-gui-tools:latest
+FROM ${BASE}
 #should be duckietown/${BASE_IMAGE}:${BASE_TAG} as BASE
 
 # recall all arguments
@@ -153,7 +154,7 @@ RUN sed -i 's#app/locale/#novnc/app/locale/#' /src/web/dist/static/novnc/app/ui.
 
 
 # jump back to the base image and copy frontend from builder stage
-FROM BASE
+FROM ${BASE}
 COPY --from=builder /src/web/dist/ /usr/local/lib/web/frontend/
 
 # make websockify executable
