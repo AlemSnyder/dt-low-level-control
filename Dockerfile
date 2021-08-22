@@ -112,18 +112,18 @@ LABEL org.duckietown.label.module.type="${REPO_NAME}" \
 ##
 FROM ubuntu:focal as builder
 
-# RUN apt-get update \
-#    && apt-get install -y --no-install-recommends \
-#        curl \
-#        git \
-#        ca-certificates \
-#        gnupg \
-#        patch
+ RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        curl \
+        git \
+        ca-certificates \
+        gnupg \
+        patch
 
 # nodejs
-#RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
-#    && apt-get install -y \
-#        nodejs
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get install -y \
+        nodejs
 
 # yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
@@ -132,9 +132,9 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && apt-get install -y yarn
 
 # fetch noVNC
-#ARG NOVNC_VERSION
-#RUN git clone https://github.com/novnc/noVNC /src/web/static/novnc \
-#    && git -C /src/web/static/novnc checkout ${NOVNC_VERSION}
+ARG NOVNC_VERSION
+RUN git clone https://github.com/novnc/noVNC /src/web/static/novnc \
+    && git -C /src/web/static/novnc checkout ${NOVNC_VERSION}
 
 # fetch websockify
 ARG WEBSOCKIFY_VERSION
@@ -154,7 +154,7 @@ RUN sed -i 's#app/locale/#novnc/app/locale/#' /src/web/dist/static/novnc/app/ui.
 
 # jump back to the base image and copy frontend from builder stage
 FROM BASE
-#COPY --from=builder /src/web/dist/ /usr/local/lib/web/frontend/
+COPY --from=builder /src/web/dist/ /usr/local/lib/web/frontend/
 
 # make websockify executable
 RUN ln -sf /usr/local/lib/web/frontend/static/websockify \
@@ -165,7 +165,7 @@ RUN ln -sf /usr/local/lib/web/frontend/static/websockify \
 ENV HTTP_PORT 8087
 
 # get the image_pipeline (this is needed to avoid issues with python2 shebang)
-#RUN git clone https://github.com/ros-perception/image_pipeline.git
+RUN git clone https://github.com/ros-perception/image_pipeline.git
 
 # build packages
 RUN . /opt/ros/${ROS_DISTRO}/setup.sh && \
