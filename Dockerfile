@@ -14,11 +14,12 @@ ARG WEBSOCKIFY_VERSION="3646575"
 ARG ARCH=arm32v7
 ARG DISTRO=daffy
 ARG BASE_TAG=${DISTRO}-${ARCH}
-ARG BASE_IMAGE=dt-duckiebot-interface
+ARG BASE_IMAGE=dt-gui-tools
 ARG LAUNCHER=default
 
 # define base image
-FROM duckietown/${BASE_IMAGE}:${BASE_TAG} as BASE
+FROM dt-gui-tools:latest
+#should be duckietown/${BASE_IMAGE}:${BASE_TAG} as BASE
 
 # recall all arguments
 ARG ARCH
