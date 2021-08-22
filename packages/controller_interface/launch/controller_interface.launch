@@ -1,5 +1,6 @@
+<?xml version="1.0"?>
 <launch>
-  <arg name="veh"/>
+  <arg name="veh" doc="name of the vehicle"/>
   <arg name="pkg_name" value="low_level_controller"/>
   <arg name="node_name" default="controller_interface"/>
   <arg name="param_file_name" default="default" doc="Specify a param file"/>
