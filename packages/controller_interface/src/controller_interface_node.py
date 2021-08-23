@@ -182,6 +182,7 @@ class ControllerInterfaceNode(DTROS):
 
 if __name__ == "__main__":
     # Initialize the node
+    print("Node Running (or at least started)")
     ControllerInterface = ControllerInterfaceNode("controller_interface_code", lambda x :(0,0))
     # Keep it spinning to keep the node alive
     rospy.spin()
