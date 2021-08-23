@@ -38,6 +38,7 @@ RUN dt-build-env-check "${REPO_NAME}" "${MAINTAINER}" "${DESCRIPTION}"
 
 # define/create repository path
 ARG REPO_PATH="${CATKIN_WS_DIR}/src/${REPO_NAME}"
+RUN echo "${REPO_PATH}"
 ARG LAUNCH_PATH="${LAUNCH_DIR}/${REPO_NAME}"
 RUN mkdir -p "${REPO_PATH}"
 RUN mkdir -p "${LAUNCH_PATH}"
