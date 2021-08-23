@@ -19,7 +19,7 @@ ARG LAUNCHER=default
 ARG BASE=dt-gui-tools:latest
 
 # define base image
-FROM ${BASE}
+FROM ${BASE_IMAGE}:latest as BASE
 #should be duckietown/${BASE_IMAGE}:${BASE_TAG} as BASE
 
 # recall all arguments
@@ -38,7 +38,7 @@ RUN dt-build-env-check "${REPO_NAME}" "${MAINTAINER}" "${DESCRIPTION}"
 
 # define/create repository path
 ARG REPO_PATH="${CATKIN_WS_DIR}/src/${REPO_NAME}"
-RUN echo "${REPO_PATH}"
+#RUN echo "${REPO_PATH}"
 ARG LAUNCH_PATH="${LAUNCH_DIR}/${REPO_NAME}"
 RUN mkdir -p "${REPO_PATH}"
 RUN mkdir -p "${LAUNCH_PATH}"
@@ -155,7 +155,7 @@ RUN sed -i 's#app/locale/#novnc/app/locale/#' /src/web/dist/static/novnc/app/ui.
 
 
 # jump back to the base image and copy frontend from builder stage
-FROM ${BASE}
+FROM BASE
 COPY --from=builder /src/web/dist/ /usr/local/lib/web/frontend/
 
 # make websockify executable
