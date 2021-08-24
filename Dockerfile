@@ -16,7 +16,7 @@ ARG DISTRO=daffy
 ARG BASE_TAG=${DISTRO}-${ARCH}
 ARG BASE_IMAGE=dt-gui-tools
 ARG LAUNCHER=default
-ARG BASE=dt-gui-tools:latest
+#ARG BASE=dt-gui-tools:latest
 
 # define base image
 FROM ${BASE_IMAGE}:latest as BASE
