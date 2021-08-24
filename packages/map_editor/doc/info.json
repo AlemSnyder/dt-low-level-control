@@ -1,0 +1,705 @@
+{
+    "categories": [
+        {
+            "lang": {
+                "ru": {
+                    "name": "Блоки дороги"
+                },
+                "en": {
+                    "name": "Road tiles"
+                }
+            },
+            "id": "road",
+            "elements": [
+                "straight",
+                "curve_left",
+                "curve_right",
+                "3way_left",
+                "3way_right",
+                "4way"
+            ]
+        },
+        {
+            "lang": {
+                "ru": {
+                    "name": "Блоки заполнения дороги"
+                },
+                "en": {
+                    "name": "Fill tiles"
+                }
+            },
+            "id": "block",
+            "elements": [
+                "empty",
+                "asphalt",
+                "grass",
+                "floor"
+            ]
+        },
+        {
+            "lang": {
+                "ru": {
+                    "name": "Запрещающие знаки"
+                },
+                "en": {
+                    "name": "Regulatory signs"
+                }
+            },
+            "id": "ban",
+            "elements": [
+                "stop",
+                "yield",
+                "no-right-turn",
+                "no-left-turn",
+                "do-not-enter"
+            ]
+        },
+        {
+            "lang": {
+                "ru": {
+                    "name": "Информационные знаки"
+                },
+                "en": {
+                    "name": "Infornation signs"
+                }
+            },
+            "id": "info",
+            "elements": [
+                "oneway-right",
+                "oneway-left",
+                "4-way-intersect",
+                "right-T-intersect",
+                "left-T-intersect",
+                "T-intersection"
+            ]
+        },
+        {
+            "lang": {
+                "ru": {
+                    "name": "Специальные знаки"
+                },
+                "en": {
+                    "name": "Special signs"
+                }
+            },
+            "id": "spec",
+            "elements": [
+                "pedestrian",
+                "t-light-ahead",
+                "duck-crossing",
+                "parking"
+            ]
+        },
+        {
+            "lang": {
+                "ru": {
+                    "name": "Городские объекты"
+                },
+                "en": {
+                    "name": "City object"
+                }
+            },
+            "id": "objects",
+            "elements": [
+                "trafficlight",
+                "barrier",
+                "cone",
+                "duckie",
+                "duckiebot",
+                "tree",
+                "house",
+                "truck",
+                "bus",
+                "building"
+            ]
+        },
+        {
+            "lang": {
+                "ru": {
+                    "name": "Вышки"
+                },
+                "en": {
+                    "name": "watchtowers"
+                }
+            },
+            "id": "watchower",
+            "elements": [
+                "watchtower"
+            ]
+        },
+        {
+            "lang": {
+                "ru": {
+                    "name": "Apriltags"
+                },
+                "en": {
+                    "name": "Apriltags"
+                }
+            },
+            "id": "apriltag",
+            "elements": [
+                "apriltag"
+            ]
+        }
+    ],
+    "info": {
+        "duck-crossing": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "Осторожно, уточки",
+                    "info": "Специальный знак. Обозначает место перехода уточками дорогу."
+                },
+                "en": {
+                    "name": "Duck crossing",
+                    "info": "Special sign. Indicates the place where ducks cross the road."
+                }
+            },
+            "icon": "img/signs/duck-crossing.png"
+        },
+        "barrier": {
+            "type": "object",
+            "lang": {
+                "ru": {
+                    "name": "Барьер",
+                    "info": "Городской объект. Искусственно заграждение."
+                },
+                "en": {
+                    "name": "Barrier",
+                    "info": "City object. Barrier."
+                }
+            },
+            "icon": "img/objects/barrier.png"
+        },
+        "straight": {
+            "lang": {
+                "ru": {
+                    "name": "Дорога",
+                    "info": "Кусок прямой дороги с разметкой. По бокам ограничен сплошными белыми линиями. Полосы разделяет прерывистая жёлтая линия."
+                },
+                "en": {
+                    "name": "Road",
+                    "info": "A piece of a straight road with markings. Bounded on the sides by solid white lines. The stripes are separated by a dashed yellow line."
+                }
+            },
+            "red": 0,
+            "type": "block",
+            "length": 61,
+            "yellow": 122,
+            "icon": "img/tiles/straight.png",
+            "white": 25
+        },
+        "house": {
+            "type": "object",
+            "lang": {
+                "ru": {
+                    "name": "Дом",
+                    "info": "Городской объект. Дом, который постоил Джек для уточки."
+                },
+                "en": {
+                    "name": "House",
+                    "info": "City object. The house that Jack built for the duck."
+                }
+            },
+            "icon": "img/objects/house.png"
+        },
+        "stop": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "Стоп",
+                    "info": "Запрещающий знак. Обязывает остановиться перед ним."
+                },
+                "en": {
+                    "name": "Stop",
+                    "info": "Regulatory sign. It obliges to stop in front of it."
+                }
+            },
+            "icon": "img/signs/stop.png"
+        },
+        "curve_left": {
+            "lang": {
+                "ru": {
+                    "name": "Левый поворот",
+                    "info": "Поворот налево с двумя полосами движения. Ограничен сплошной белой разметкой. Полосы разграничены прерывистой жёлтой линией."
+                },
+                "en": {
+                    "name": "Left turn",
+                    "info": "Left turn with two lanes. Limited to solid white markings. The stripes are delimited by a dashed yellow line."
+                }
+            },
+            "red": 0,
+            "type": "block",
+            "length": 86,
+            "yellow": 45,
+            "icon": "img/tiles/curve_left.png",
+            "white": 110
+        },
+        "duckiebot": {
+            "type": "object",
+            "lang": {
+                "ru": {
+                    "name": "Дакибот",
+                    "info": "Городской объект. Миленькая уточка-терминатор."
+                },
+                "en": {
+                    "name": "Duckiebot",
+                    "info": "City object. A cute terminator duck."
+                }
+            },
+            "icon": "img/objects/duckiebot.png"
+        },
+        "curve_right": {
+            "lang": {
+                "ru": {
+                    "name": "Правый поворот",
+                    "info": "Поворот направо с двумя полосами движения. Ограничен сплошной белой разметкой. Полосы разграничены прерывистой жёлтой линией."
+                },
+                "en": {
+                    "name": "Right turn",
+                    "info": "Right turn with two lanes. Limited to solid white markings. The stripes are delimited by a dashed yellow line."
+                }
+            },
+            "red": 0,
+            "type": "block",
+            "length": 86,
+            "yellow": 45,
+            "icon": "img/tiles/curve_right.png",
+            "white": 110
+        },
+        "floor": {
+            "lang": {
+                "ru": {
+                    "name": "Плитка",
+                    "info": "Блок пола, используемый для создания стоянок и мест остановок."
+                },
+                "en": {
+                    "name": "Floor",
+                    "info": "Floor block, use to create parking and stopping places."
+                }
+            },
+            "red": 0,
+            "type": "block",
+            "length": 0,
+            "yellow": 0,
+            "icon": "img/tiles/floor.png",
+            "white": 0
+        },
+        "tree": {
+            "type": "object",
+            "lang": {
+                "ru": {
+                    "name": "Дерево",
+                    "info": "Городской объект. Дерево."
+                },
+                "en": {
+                    "name": "Tree",
+                    "info": "City object. Tree."
+                }
+            },
+            "icon": "img/objects/tree.png"
+        },
+        "yield": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "Уступи дорогу",
+                    "info": "Запрещающий знак. Требует уступить дорогу на перекрёстке."
+                },
+                "en": {
+                    "name": "Give away",
+                    "info": "Regulatory sign. Demands to give way at an intersection."
+                }
+            },
+            "icon": "img/signs/yield.png"
+        },
+        "grass": {
+            "lang": {
+                "ru": {
+                    "name": "Трава",
+                    "info": "Блок травы, используется для заполнения карты и добычи ростков пшеницы."
+                },
+                "en": {
+                    "name": "Grass",
+                    "info": "Grass block, used to fill the map."
+                }
+            },
+            "red": 0,
+            "type": "block",
+            "length": 0,
+            "yellow": 0,
+            "icon": "img/tiles/grass.png",
+            "white": 0
+        },
+        "3way_left": {
+            "lang": {
+                "ru": {
+                    "name": "Т-образный левый перекрёсток",
+                    "info": "Левый Т-образный перекрёсток с красными стоп линиями для остановки машин."
+                },
+                "en": {
+                    "name": "T-shaped left crossroads",
+                    "info": "Left T-junction with red stop lines to stop cars."
+                }
+            },
+            "red": 90,
+            "type": "block",
+            "length": 61,
+            "yellow": 15,
+            "icon": "img/tiles/3way_left.png",
+            "white": 81
+        },
+        "right-T-intersect": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "T-образный правый перекрёсток",
+                    "info": "Информационный знак. Говорит , что впереди правый T-образный перекрёсток."
+                },
+                "en": {
+                    "name": "T-shaped right crossroads",
+                    "info": "Information sign. Means there is a right T-junction ahead."
+                }
+            },
+            "icon": "img/signs/right-T-intersect.png"
+        },
+        "duckie": {
+            "type": "object",
+            "lang": {
+                "ru": {
+                    "name": "Уточка",
+                    "info": "Городской объект. Миленькая уточка."
+                },
+                "en": {
+                    "name": "Duckie",
+                    "info": "City object. A cute duck."
+                }
+            },
+            "icon": "img/objects/duckie.png"
+        },
+        "3way_right": {
+            "lang": {
+                "ru": {
+                    "name": "Т-образный правый перекрёсток",
+                    "info": "Правый Т-образный перекрёсток с красными стоп линиями для остановки машин."
+                },
+                "en": {
+                    "name": "T-shaped right crossroads",
+                    "info": "Right T-junction with red stop lines to stop cars."
+                }
+            },
+            "red": 90,
+            "type": "block",
+            "length": 61,
+            "yellow": 15,
+            "icon": "img/tiles/3way_right.png",
+            "white": 81
+        },
+        "T-intersection": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "T-образный перекрёсток",
+                    "info": "Информационный знак. Говорит, что впереди T-образный перекрёсток."
+                },
+                "en": {
+                    "name": "T-shaped crossroads",
+                    "info": "Information sign. Means there is a T-junction ahead."
+                }
+            },
+            "icon": "img/signs/T-intersection.png"
+        },
+        "4-way-intersect": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "Перекресток",
+                    "info": "Информационный знак. Говорит, что впереди четырёхсторонний перекрёсток."
+                },
+                "en": {
+                    "name": "Crossroad",
+                    "info": "Information sign. Means that there is a 4-way intersection ahead."
+                }
+            },
+            "icon": "img/signs/4-way-intersect.png"
+        },
+        "cone": {
+            "type": "object",
+            "lang": {
+                "ru": {
+                    "name": "Конус",
+                    "info": "Городской объект. Дорожный конус."
+                },
+                "en": {
+                    "name": "Cone",
+                    "info": "City object. Traffic cone."
+                }
+            },
+            "icon": "img/objects/cone.png"
+        },
+        "left-T-intersect": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "T-образный левый перекрёсток",
+                    "info": "Информационный знак. Говорит , что впереди левый T-образный перекрёсток."
+                },
+                "en": {
+                    "name": "T-shaped left crossroads",
+                    "info": "Information sign. Means there is a left T-intersection ahead."
+                }
+            },
+            "icon": "img/signs/left-T-intersect.png"
+        },
+        "4way": {
+            "lang": {
+                "ru": {
+                    "name": "Перекрёсток",
+                    "info": "4-х сторонний перекрёсток с красными стоп линиями для остановки машин."
+                },
+                "en": {
+                    "name": "Crossroad",
+                    "info": "4-way intersection with red stop lines for car stops."
+                }
+            },
+            "red": 120,
+            "type": "block",
+            "length": 61,
+            "yellow": 20,
+            "icon": "img/tiles/4way.png",
+            "white": 40
+        },
+        "no-left-turn": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "Поворот налево запрещен",
+                    "info": "Запрещающий знак. Запрещает поворот налево и разворот."
+                },
+                "en": {
+                    "name": "No left turn",
+                    "info": "Regulatory sign. Prohibits left turn and U-turn."
+                }
+            },
+            "icon": "img/signs/no-left-turn.png"
+        },
+        "do-not-enter": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "Кирпич",
+                    "info": "Запрещающий знак. Запрещает проезд под знаком. В простонародье кирпич."
+                },
+                "en": {
+                    "name": "No entry",
+                    "info": "Regulatory sign. Prohibits passage under the sign."
+                }
+            },
+            "icon": "img/signs/do-not-enter.png"
+        },
+        "bus": {
+            "type": "object",
+            "lang": {
+                "ru": {
+                    "name": "Автобус",
+                    "info": "Городской объект. Автобус для уточек."
+                },
+                "en": {
+                    "name": "Bus",
+                    "info": "City object. Duck bus."
+                }
+            },
+            "icon": "img/objects/bus.png"
+        },
+        "t-light-ahead": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "Светофор",
+                    "info": "Специальный знак. Обозначает наличие светофорного регулирования."
+                },
+                "en": {
+                    "name": "Traffic light",
+                    "info": "Special sign. Indicates the presence of traffic light."
+                }
+            },
+            "icon": "img/signs/t-light-ahead.png"
+        },
+        "building": {
+            "type": "object",
+            "lang": {
+                "ru": {
+                    "name": "Здание",
+                    "info": "Городской объект. Многотажное здание."
+                },
+                "en": {
+                    "name": "Building",
+                    "info": "City object. Multi-storey building."
+                }
+            },
+            "icon": "img/objects/building.png"
+        },
+        "no-right-turn": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "Поворот направо запрещен",
+                    "info": "Запрещающий знак. Запрещает поворот направо."
+                },
+                "en": {
+                    "name": "No right turn",
+                    "info": "Regulatory sign. Prohibits right turn."
+                }
+            },
+            "icon": "img/signs/no-right-turn.png"
+        },
+        "trafficlight": {
+            "type": "object",
+            "lang": {
+                "ru": {
+                    "name": "Светофор",
+                    "info": "Городоской объект. Светофор, регулирующий движение в автоматическом режиме."
+                },
+                "en": {
+                    "name": "Traffic light",
+                    "info": "City object. Traffic light regulating traffic in automatic mode."
+                }
+            },
+            "icon": "img/objects/trafficlight.png"
+        },
+        "asphalt": {
+            "lang": {
+                "ru": {
+                    "name": "Асфальт",
+                    "info": "Стандартный блок асфальта."
+                },
+                "en": {
+                    "name": "Asphalt",
+                    "info": "Standard block of asphalt."
+                }
+            },
+            "red": 0,
+            "type": "block",
+            "length": 0,
+            "yellow": 0,
+            "icon": "img/tiles/asphalt.png",
+            "white": 0
+        },
+        "parking": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "Парковка",
+                    "info": "Специальный знак. Обозначает место парковки."
+                },
+                "en": {
+                    "name": "Parking",
+                    "info": "Special sign. Indicates a parking spot."
+                }
+            },
+            "icon": "img/signs/parking.png"
+        },
+        "oneway-right": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "Односторонее движение направо",
+                    "info": "Информационный знак. Говорит, что начинается односторонее движение слева направо."
+                },
+                "en": {
+                    "name": "One-way street right",
+                    "info": "Information sign. Means that one-way traffic starts from left to right."
+                }
+            },
+            "icon": "img/signs/oneway-right.png"
+        },
+        "pedestrian": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "Пешеходный переход",
+                    "info": "Специальный знак. Обозначает пешеходный переход."
+                },
+                "en": {
+                    "name": "Pedestrian crossing",
+                    "info": "Special sign. Indicates a pedestrian crossing."
+                }
+            },
+            "icon": "img/signs/pedestrian.png"
+        },
+        "truck": {
+            "type": "object",
+            "lang": {
+                "ru": {
+                    "name": "Грузовик",
+                    "info": "Городской объект. Грузовой автомобиль для доставки."
+                },
+                "en": {
+                    "name": "Truck",
+                    "info": "City object. Delivery truck."
+                }
+            },
+            "icon": "img/objects/truck.png"
+        },
+        "oneway-left": {
+            "type": "sign",
+            "lang": {
+                "ru": {
+                    "name": "Односторонее движение налево",
+                    "info": "Информационный знак. Говорит, что начинается односторонее движение справо налево."
+                },
+                "en": {
+                    "name": "One-way street left",
+                    "info": "Information sign. Says that one-way traffic starts from right to left."
+                }
+            },
+            "icon": "img/signs/oneway-left.png"
+        },
+        "watchtower": {
+            "type": "watchtower",
+            "lang": {
+                "ru": {
+                    "name": "вышка",
+                    "info": "test watchtower"
+                },
+                "en": {
+                    "name": "watchtower",
+                    "info": "test1 watchtower"
+                }
+            },
+            "icon": "img/objects/watchtower.png"
+        },
+        "apriltag": {
+            "type": "apriltag",
+            "lang": {
+                "ru": {
+                    "name": "Apriltag",
+                    "info": "Apriltag_ru"
+                },
+                "en": {
+                    "name": "Apriltag",
+                    "info": "Apriltag_en"
+                }
+            },
+            "icon": "img/apriltags/apriltag.png"
+        },
+        "empty": {
+            "lang": {
+                "ru": {
+                    "name": "Пустой блок",
+                    "info": "Пустой блок для заполнения карты."
+                },
+                "en": {
+                    "name": "Empty block",
+                    "info": "An empty block to fill map."
+                }
+            },
+            "red": 0,
+            "type": "block",
+            "length": 0,
+            "yellow": 0,
+            "icon": "img/tiles/empty.png",
+            "white": 0
+        }
+    }
+}

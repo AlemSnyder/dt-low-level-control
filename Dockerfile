@@ -1,7 +1,7 @@
 # parameters
-ARG REPO_NAME="dt-low-level-control"
-ARG DESCRIPTION="Provides conputer control for the duckiebot."
-ARG MAINTAINER="ummm"
+ARG REPO_NAME="dt-gui-tools"
+ARG DESCRIPTION="Provides access to GUI-based tools (e.g., rviz, rqt_image_view)"
+ARG MAINTAINER="Andrea F. Daniele (afdaniele@ttic.edu)"
 # pick an icon from: https://fontawesome.com/v4.7.0/icons/
 ARG ICON="desktop"
 
@@ -14,12 +14,11 @@ ARG WEBSOCKIFY_VERSION="3646575"
 ARG ARCH=arm32v7
 ARG DISTRO=daffy
 ARG BASE_TAG=${DISTRO}-${ARCH}
-ARG BASE_IMAGE=dt-gui-tools
+ARG BASE_IMAGE=dt-core
 ARG LAUNCHER=default
 
 # define base image
-FROM dt-gui-tools:latest
-#should be duckietown/${BASE_IMAGE}:${BASE_TAG} as BASE
+FROM duckietown/${BASE_IMAGE}:${BASE_TAG} as BASE
 
 # recall all arguments
 ARG ARCH
