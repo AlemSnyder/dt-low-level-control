@@ -7,14 +7,20 @@ import subprocess
 import docker
 from dt_shell import DTCommandAbs, DTShell, dtslogger
 from dt_shell.env_checks import check_docker_environment
+
+#this is in ~/.dt-shell/commands-multi/daffy
+import sys
+sys.path.append(os.path.expanduser("~/.dt-shell/commands-multi/daffy"))
+#print(sys.path)
+import utils
 from utils.cli_utils import start_command_in_subprocess
-from utils.docker_utils import remove_if_running, pull_if_not_exist
+from utils.docker_utils import remove_if_running, pull_if_not_exist, build_if_not_exist
 from utils.networking_utils import get_duckiebot_ip
 
 
 CONTROLLER_COMMAND = "roslaunch controller_interface controller_interface.launch veh:={veh}"
 BRANCH = "dev"
-DEFAULT_IMAGE = "duckietown/dt-low-level-control:" + BRANCH
+DEFAULT_IMAGE = "dt-low-level-control:" + BRANCH
 AVAHI_SOCKET = "/var/run/avahi-daemon/socket"
 
 
@@ -79,7 +85,16 @@ def run_controller(hostname, image, duckiebot_ip, network_mode, sim):
         "detach": True,
     }
 
-    pull_if_not_exist(duckiebot_client, params["image"])
+    process= subprocess.Popen(["git", "rev-parse", "--abbrev-ref", "HEAD"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    tag = process.communicate()[0].decode("utf-8").strip()
+    # somehow this giets the branch name ^
+    build_if_not_exist(
+        client=duckiebot_client,
+        image_path=os.path.expanduser("~/Duckietown/dt-low-level-control"),
+        tag=tag
+    )
+    print("Do you see your build?")
+    print(duckiebot_client.images.list())
     duckiebot_client.containers.run(**params)
 
     cmd = "docker %s attach %s" % ("-H %s.local" % hostname if not sim else "", container_name)
@@ -96,3 +111,8 @@ def set_default_env(hostname, ip):
         "ROS_MASTER_URI": "http://%s:11311" % ip,
     }
     return env
+
+if __name__ == "__main__":
+    #client=docker.DockerClient("tcp://" + duckiebot_ip + ":2375")
+    #client.images.get(image_name)
+    DTCommand.command("", ["charlie"])

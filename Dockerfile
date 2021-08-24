@@ -19,8 +19,7 @@ ARG LAUNCHER=default
 #ARG BASE=dt-gui-tools:latest
 
 # define base image
-FROM ${BASE_IMAGE}:latest as BASE
-#should be duckietown/${BASE_IMAGE}:${BASE_TAG} as BASE
+FROM duckietown/${BASE_IMAGE}:${BASE_TAG} as BASE
 
 # recall all arguments
 ARG ARCH
