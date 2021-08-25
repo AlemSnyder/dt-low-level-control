@@ -64,6 +64,7 @@ def run_controller(hostname, image, duckiebot_ip, network_mode, sim):
         duckiebot_client = check_docker_environment()
     else:
         duckiebot_client = docker.DockerClient("tcp://" + duckiebot_ip + ":2375")
+    print(duckiebot_client.images.list())
     container_name = "auto_drive_%s" % hostname
     remove_if_running(duckiebot_client, container_name)
     env = set_default_env(hostname, duckiebot_ip)
