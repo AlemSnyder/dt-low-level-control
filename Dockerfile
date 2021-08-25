@@ -14,9 +14,8 @@ ARG WEBSOCKIFY_VERSION="3646575"
 ARG ARCH=arm32v7
 ARG DISTRO=daffy
 ARG BASE_TAG=${DISTRO}-${ARCH}
-ARG BASE_IMAGE=dt-gui-tools
+ARG BASE_IMAGE=dt-core
 ARG LAUNCHER=default
-#ARG BASE=dt-gui-tools:latest
 
 # define base image
 FROM duckietown/${BASE_IMAGE}:${BASE_TAG} as BASE
@@ -37,7 +36,6 @@ RUN dt-build-env-check "${REPO_NAME}" "${MAINTAINER}" "${DESCRIPTION}"
 
 # define/create repository path
 ARG REPO_PATH="${CATKIN_WS_DIR}/src/${REPO_NAME}"
-#RUN echo "${REPO_PATH}"
 ARG LAUNCH_PATH="${LAUNCH_DIR}/${REPO_NAME}"
 RUN mkdir -p "${REPO_PATH}"
 RUN mkdir -p "${LAUNCH_PATH}"
@@ -90,18 +88,16 @@ LABEL org.duckietown.label.module.type="${REPO_NAME}" \
 # <==================================================
 
 # configure ffmpeg
-# should remove all copy ommands
-# and half the run commands
-# RUN [ ! -d "/usr/local/ffmpeg" ] && mkdir /usr/local/ffmpeg
-# RUN [ ! -d "/usr/local/ffmpeg/ffmpeg" ] && ln -s /usr/bin/ffmpeg /usr/local/ffmpeg/ffmpeg
+RUN mkdir /usr/local/ffmpeg \
+    && ln -s /usr/bin/ffmpeg /usr/local/ffmpeg/ffmpeg
 
 # install backend dependencies
-#COPY assets/vnc/install-backend-deps /tmp/
-#COPY assets/vnc/image/usr/local/lib/web/backend/requirements.txt /tmp/
-#RUN /tmp/install-backend-deps
+COPY assets/vnc/install-backend-deps /tmp/
+COPY assets/vnc/image/usr/local/lib/web/backend/requirements.txt /tmp/
+RUN /tmp/install-backend-deps
 
 # copy novnc stuff to the root of the container
-#COPY assets/vnc/image /
+COPY assets/vnc/image /
 
 
 #### => Substep: Frontend builder
@@ -113,7 +109,7 @@ LABEL org.duckietown.label.module.type="${REPO_NAME}" \
 ##
 FROM ubuntu:focal as builder
 
- RUN apt-get update \
+RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         curl \
         git \
@@ -158,15 +154,15 @@ FROM BASE
 COPY --from=builder /src/web/dist/ /usr/local/lib/web/frontend/
 
 # make websockify executable
-#RUN ln -sf /usr/local/lib/web/frontend/static/websockify \
-#        /usr/local/lib/web/frontend/static/novnc/utils/websockify \
-#    && chmod +x /usr/local/lib/web/frontend/static/websockify/run
+RUN ln -sf /usr/local/lib/web/frontend/static/websockify \
+        /usr/local/lib/web/frontend/static/novnc/utils/websockify \
+    && chmod +x /usr/local/lib/web/frontend/static/websockify/run
 
 # configure novnc
 ENV HTTP_PORT 8087
 
 # get the image_pipeline (this is needed to avoid issues with python2 shebang)
-#RUN git clone https://github.com/ros-perception/image_pipeline.git
+RUN git clone https://github.com/ros-perception/image_pipeline.git
 
 # build packages
 RUN . /opt/ros/${ROS_DISTRO}/setup.sh && \

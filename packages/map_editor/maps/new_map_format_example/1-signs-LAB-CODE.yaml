@@ -1,0 +1,24 @@
+data:
+- height: 1
+  kind: stop
+  optional: false
+  pos: [1.0, 0.0]
+  rotate: 0
+  static: true
+  tag_id: 1
+- height: 1
+  kind: oneway-right
+  optional: false
+  pos: [0.0, 1.0]
+  rotate: 0
+  static: true
+  tag_id: 6
+- height: 1
+  kind: no-left-turn
+  optional: false
+  pos: [0.0, 2.0]
+  rotate: 0
+  static: true
+  tag_id: 4
+name: LAB-CODE
+type: 1-signs

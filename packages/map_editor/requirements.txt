@@ -1,0 +1,4 @@
+numpy==1.18.5
+PyQt5==5.14.0
+pyinstaller==4.0
+PyYAML==5.3.1
