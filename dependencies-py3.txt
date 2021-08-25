@@ -1,2 +1,16 @@
 # LIST YOUR PYTHON3 PACKAGES HERE
-# because this is from another image none are needed
+numpy
+
+# Duckietown World
+duckietown-world-daffy
+
+# Map editor
+PyQt5
+PyYAML==5.3.1
+pynput==1.7.1
+
+# Jupyter notebook
+jupyterlab
+matplotlib
+numpy
+scipy

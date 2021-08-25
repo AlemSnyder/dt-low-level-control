@@ -1,0 +1,10 @@
+data:
+- height: 1
+  kind: watchtower
+  hostname: watchtower00
+  optional: false
+  pos: [6.0, 0.0]
+  rotate: 0
+  static: true
+name: LAB-CODE
+type: 3-watchtowers

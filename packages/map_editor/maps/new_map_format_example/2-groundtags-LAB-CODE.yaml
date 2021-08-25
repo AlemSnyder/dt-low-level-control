@@ -1,0 +1,19 @@
+data:
+- height: 1
+  kind: apriltag
+  optional: false
+  pos: [4.0, 0.0]
+  rotate: 0
+  static: true
+  tag_id: 307
+  tag_type: Localization
+- height: 1
+  kind: apriltag
+  optional: false
+  pos: [5.0, 0.0]
+  rotate: 0
+  static: true
+  tag_id: 446
+  tag_type: StreetName
+name: LAB-CODE
+type: 2-groundtags
