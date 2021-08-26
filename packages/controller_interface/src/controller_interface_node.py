@@ -7,6 +7,7 @@ import time
 import os.path
 
 from duckietown_msgs.msg import WheelsCmdStamped#, Twist2DStamped
+from sensor_msgs.msg import CompressedImage#, CameraInfo
 from std_srvs.srv import EmptyResponse#, Empty
 
 from duckietown.dtros import DTROS, NodeType, TopicType, DTParam#, ParamType
@@ -41,7 +42,12 @@ class ControllerInterfaceNode(DTROS):
         # self._omega_max = DTParam("~omega_max", param_type=ParamType.FLOAT, min_value=1.0, max_value=10.0)
 
         # subscrib to the image topic
-        self.image = DTParam("~image/compressed")
+        self.sub_image = rospy.Subscriber(
+            "~image/compressed",
+            CompressedImage,
+            queue_size=1,
+            dt_topic_type=TopicType.DRIVER
+        )
 
         #TODO
         # Prepare the save calibration service

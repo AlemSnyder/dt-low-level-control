@@ -2,12 +2,14 @@
 <launch>
   <arg name="veh" doc="name of the vehicle"/>
   <arg name="pkg_name" value="controller_interface"/>
-  <arg name="node_name" default="controller_interface"/>
+  <arg name="node_name" default="controller_interface_node"/>
   <arg name="param_file_name" default="default" doc="Specify a param file"/>
 
   <group ns="$(arg veh)">
+    <remap from="$(arg node_name)/image/compressed" to="camera_driver/image/compressed"/>
+    <remap from="$(arg node_name)/wheels_cmd" to="wheels_driver/wheels_cmd"/>
     <node  name="$(arg node_name)" pkg="$(arg pkg_name)" type="$(arg node_name).py" output="screen">
-      <rosparam command="load" file="$(find low_level_controller)/config/$(arg node_name)/$(arg param_file_name).yaml"/>
+      <rosparam command="load" file="$(find controller_interface)/config/$(arg pkg_name)/$(arg param_file_name).yaml"/>
     </node>
   </group>
 

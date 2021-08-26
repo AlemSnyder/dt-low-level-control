@@ -19,7 +19,9 @@ from utils.networking_utils import get_duckiebot_ip
 
 
 CONTROLLER_COMMAND = "roslaunch controller_interface controller_interface.launch veh:={veh}"
-BRANCH = "dev"
+process= subprocess.Popen(["git", "rev-parse", "--abbrev-ref", "HEAD"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+BRANCH = process.communicate()[0].decode("utf-8").strip()
+# somehow this giets the branch name ^
 DEFAULT_IMAGE = "dt-low-level-control:" + BRANCH
 AVAHI_SOCKET = "/var/run/avahi-daemon/socket"
 
@@ -86,13 +88,15 @@ def run_controller(hostname, image, duckiebot_ip, network_mode, sim):
         "detach": True,
     }
 
+    pull_if_not_exist(duckiebot_client,"duckietown/dt-duckiebot-interface:daffy-arm64v8")
+
     process= subprocess.Popen(["git", "rev-parse", "--abbrev-ref", "HEAD"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     tag = process.communicate()[0].decode("utf-8").strip()
     # somehow this giets the branch name ^
     build_if_not_exist(
         client=duckiebot_client,
         image_path=os.path.expanduser("~/Duckietown/dt-low-level-control"),
-        tag=tag
+        tag=DEFAULT_IMAGE
     )
     print("Do you see your build?")
     print(duckiebot_client.images.list())
