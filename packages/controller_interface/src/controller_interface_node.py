@@ -72,15 +72,26 @@ class ControllerInterfaceNode(DTROS):
         
         # Calculate the movement:
         [u_l,u_r] = self.AI.run(self.image.value)
+
+        lr_cmd(u_l, u_r)
+
+    def lr_cmd(self, u_l, u_r):
+
+        msg_wheels_cmd = WheelsCmdStamped()
+        msg_wheels_cmd.header.stamp = rospy.get_rostime()
         
         # limiting output to limit, which is 1.0 for the duckiebot
-        u_r_limited = self.trim(u_r, -self._limit.value, self._limit.value)
-        u_l_limited = self.trim(u_l, -self._limit.value, self._limit.value)
+        limit=1.0
+        #u_r_limited = self.trim(u_r, -self._limit.value, self._limit.value)
+        #u_l_limited = self.trim(u_l, -self._limit.value, self._limit.value)
+        u_r_limited = self.trim(u_r, -limit, limit)
+        u_l_limited = self.trim(u_l, -limit, limit)
         
         
         msg_wheels_cmd.vel_right = u_r_limited
         msg_wheels_cmd.vel_left = u_l_limited
         self.pub_wheels_cmd.publish(msg_wheels_cmd)
+        print(f"should have published: {u_l_limited},{u_r_limited}")
 
     def get_current_configuration(self):
         return {"confituration not implemented": True}
@@ -188,7 +199,19 @@ class ControllerInterfaceNode(DTROS):
 
 if __name__ == "__main__":
     # Initialize the node
-    print("Node Running (or at least started)")
     ControllerInterface = ControllerInterfaceNode("controller_interface_code", lambda x :(0,0))
     # Keep it spinning to keep the node alive
-    rospy.spin()
+    # rospy.spin() is this nessessary? it is for subscribers
+    while not rospy.is_shutdown():
+        direction = input("enter directions")
+        try:
+            l,r=[float(x) for x in direction.split("|")]
+        except:
+            continue
+        else:
+            print(l,r)
+            ControllerInterface.lr_cmd(l,r)
+    #print("Command after spin?!")
+    #x=input("press 'w'")
+    #if x=="w":
+    #    ControllerInterface.lr_cmd(1,1)
